@@ -18,7 +18,7 @@ from setuptools import setup
 
 setup(
     name='metrics-py',
-    version=importlib.import_module('metricspy').__version__,
+    version=importlib.import_module('metrics').__version__,
     author='Body Labs',
     author_email='chenyang.liu@bodylabs.com',
     description='Metrics send/query abstraction layer with URI-based backend configuration',
@@ -26,8 +26,8 @@ setup(
     url='https://github.com/bodylabs/metrics-py',
     license='Apache',
     packages=[
-        'metricspy',
-        'metricspy/backends',
+        'metrics',
+        'metrics/backends',
     ],
     install_requires=install_requires,
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
