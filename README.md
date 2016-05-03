@@ -1,4 +1,4 @@
-# metrics
+# aquifer
 
 Metrics send and query abstraction layer with URI-based backend configuration, in Python
 Includes backend support for Datadog
