@@ -9,7 +9,7 @@ class Datadog(object):
 
         self.client = datadog.api
 
-    def send(self, name, value, metrics_type='gauge', tags=None, timestamp=None):
+    def send(self, name, value, metrics_type, tags, timestamp):
 
         if tags is not None:
             transformed_tags = ['%s:%s' % (k, v) for k, v in tags.iteritems()]

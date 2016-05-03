@@ -1,6 +1,7 @@
-# metrics-py
+# metrics
 
 Metrics send/query abstraction layer with URI-based backend configuration
+Includes backend support for Datadog
 
 # Configuration
 

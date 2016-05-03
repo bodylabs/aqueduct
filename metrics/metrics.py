@@ -1,11 +1,12 @@
 class Metrics(object):
-    """Metrics abstract layer, accept uri-style configuration
+    """A metrics client, which locates its backend from the URI
     """
     def __init__(self, metrics_uri):
         import urlparse
 
+        from backends import load_module
         # parse the uri
-        parsed_metrics_url = urlparse.urlsplit(metrics_uri)
+        parsed_metrics_url = urlparse.urlparse(metrics_uri)
 
         # validate metrics uri is set with correct scheme, `metrics`
         metrics_url_scheme = parsed_metrics_url.scheme
@@ -21,18 +22,9 @@ class Metrics(object):
         # just take the first value
         options = {k:v_list[0] for k, v_list in parsed_options.iteritems()}
 
-        backend_cls = self._load_backend_module(parsed_metrics_url.hostname)
+        backend_cls = load_module(parsed_metrics_url.hostname)
 
         self.backend = backend_cls(api_key=api_key, **options)
-
-    def _load_backend_module(self, backend_name):
-
-        from . import backends
-
-        try:
-            return getattr(backends, backend_name)
-        except AttributeError:
-            raise NotImplementedError("backend %s is not supported" % backend_name)
 
     # send a metric
     def send(self, name, value, metrics_type='gauge', tags=None, timestamp=None):

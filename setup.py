@@ -24,7 +24,7 @@ setup(
     description='Metrics send/query abstraction layer with URI-based backend configuration',
     long_description=long_description,
     url='https://github.com/bodylabs/metrics-py',
-    license='Apache',
+    license='MIT',
     packages=[
         'metrics',
         'metrics/backends',
