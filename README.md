@@ -1,6 +1,6 @@
 # metrics
 
-Metrics send/query abstraction layer with URI-based backend configuration
+Metrics send and query abstraction layer with URI-based backend configuration, in Python
 Includes backend support for Datadog
 
 # Configuration
@@ -11,7 +11,7 @@ options. The schema looks like:
     `metrics://<backend_api_key>@<backend_name>?<option1>=xxx&<option2>=xxx`
 
 e.g. for datadog:
-    `metrics_uri = 'metrics://xxxx@datadog?app_key=xxxx&debug=true'
+    `metrics_uri = 'metrics://xxxx@datadog?app_key=xxxx&debug=true'`
 
 # Development
 
