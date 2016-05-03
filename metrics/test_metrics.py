@@ -2,11 +2,11 @@ import time
 import unittest
 import mock
 
-class TestMetrics(unittest.TestCase):
+class TestCore(unittest.TestCase):
 
     @mock.patch('datadog.initialize')
     def test_metrics_initialized_with_known_backend(self, initialize_mock):
-        from .metrics import Metrics
+        from .core import Metrics
 
         _ = initialize_mock # For pylint.
         metrics_uri = 'metrics://abc@datadog?app_key=def&debug=true'
@@ -18,7 +18,7 @@ class TestMetrics(unittest.TestCase):
     @mock.patch('datadog.initialize')
     def test_metrics_initialized_with_unknown_backend_raise_error(self, initialize_mock):
 
-        from .metrics import Metrics
+        from .core import Metrics
 
         _ = initialize_mock # For pylint.
         metrics_uri = 'metrics://abc@unknown?app_key=def&debug=true'
@@ -29,7 +29,7 @@ class TestMetrics(unittest.TestCase):
     @mock.patch('datadog.initialize')
     def test_metrics_initialized_bad_metrics_uri_scheme_raise_value_error(self, initialize_mock):
 
-        from .metrics import Metrics
+        from .core import Metrics
 
         _ = initialize_mock # For pylint.
         metrics_uri = 'http://abc@unknown?app_key=def&debug=true'
@@ -41,7 +41,7 @@ class TestDatadog(unittest.TestCase):
 
     def setUp(self):
 
-        from .metrics import Metrics
+        from .core import Metrics
 
         metrics_uri = 'metrics://abc@datadog?app_key=def&debug=true'
 

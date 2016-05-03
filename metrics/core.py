@@ -4,7 +4,7 @@ class Metrics(object):
     def __init__(self, metrics_uri):
         import urlparse
 
-        from backends import load_module
+        from metrics.backends import get_backend
         # parse the uri
         parsed_metrics_url = urlparse.urlparse(metrics_uri)
 
@@ -13,8 +13,12 @@ class Metrics(object):
         if metrics_url_scheme != 'metrics':
             raise ValueError('Metrics URI must start with metrics://, got %s' % metrics_url_scheme)
 
-        # api key has to be in the auth's user name
-        api_key = parsed_metrics_url.username
+        # auth as the username:password part
+        auth = {
+            'username': parsed_metrics_url.username,
+            'password': parsed_metrics_url.password,
+        }
+
         parsed_options = urlparse.parse_qs(parsed_metrics_url.query)
 
         # parsed options is a dictionary with querystring
@@ -22,9 +26,9 @@ class Metrics(object):
         # just take the first value
         options = {k:v_list[0] for k, v_list in parsed_options.iteritems()}
 
-        backend_cls = load_module(parsed_metrics_url.hostname)
+        backend_cls = get_backend(parsed_metrics_url.hostname)
 
-        self.backend = backend_cls(api_key=api_key, **options)
+        self.backend = backend_cls(auth=auth, **options)
 
     # send a metric
     def send(self, name, value, metrics_type='gauge', tags=None, timestamp=None):

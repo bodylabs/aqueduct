@@ -2,10 +2,11 @@ import time
 
 class Datadog(object):
 
-    def __init__(self, api_key, app_key=None, **options):
+    def __init__(self, auth, app_key=None, **options):
         import datadog
 
-        datadog.initialize(api_key=api_key, app_key=app_key, **options)
+        # datadog we use username in auth as api_key
+        datadog.initialize(api_key=auth['username'], app_key=app_key, **options)
 
         self.client = datadog.api
 

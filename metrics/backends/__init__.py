@@ -4,7 +4,7 @@ KNOWN_MODULES = {
     'datadog': datadog,
 }
 
-def load_module(backend_name):
+def get_backend(backend_name):
 
     try:
         return KNOWN_MODULES[backend_name]

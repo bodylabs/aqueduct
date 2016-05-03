@@ -1,3 +1,3 @@
-from .metrics import Metrics
+from .core import Metrics
 
 __version__ = '1.0.0'
