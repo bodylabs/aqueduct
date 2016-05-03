@@ -4,7 +4,7 @@ class Metrics(object):
     def __init__(self, metrics_uri):
         import urlparse
 
-        from metrics.backends import get_backend
+        from aquifer.backends import get_backend
         # parse the uri
         parsed_metrics_url = urlparse.urlparse(metrics_uri)
 
