@@ -1,15 +1,13 @@
-from __future__ import absolute_import # to fix self import
-
 import time
 
 class Datadog(object):
 
     def __init__(self, api_key, app_key=None, **options):
-        import datadog as _datadog
+        import datadog
 
-        _datadog.initialize(api_key=api_key, app_key=app_key, **options)
+        datadog.initialize(api_key=api_key, app_key=app_key, **options)
 
-        self.client = _datadog.api
+        self.client = datadog.api
 
     def send(self, name, value, metrics_type='gauge', tags=None, timestamp=None):
 

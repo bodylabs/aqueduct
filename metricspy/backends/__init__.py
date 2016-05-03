@@ -1,1 +1,1 @@
-from .datadog import Datadog as datadog
+from .datadog_backend import Datadog as datadog
