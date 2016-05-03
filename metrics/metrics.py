@@ -7,6 +7,11 @@ class Metrics(object):
         # parse the uri
         parsed_metrics_url = urlparse.urlsplit(metrics_uri)
 
+        # validate metrics uri is set with correct scheme, `metrics`
+        metrics_url_scheme = parsed_metrics_url.scheme
+        if metrics_url_scheme != 'metrics':
+            raise ValueError('Metrics URI must start with metrics://, got %s' % metrics_url_scheme)
+
         # api key has to be in the auth's user name
         api_key = parsed_metrics_url.username
         parsed_options = urlparse.parse_qs(parsed_metrics_url.query)

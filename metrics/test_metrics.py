@@ -26,6 +26,17 @@ class TestMetrics(unittest.TestCase):
         with self.assertRaises(NotImplementedError):
             Metrics(metrics_uri)
 
+    @mock.patch('datadog.initialize')
+    def test_metrics_initialized_bad_metrics_uri_scheme_raise_value_error(self, initialize_mock):
+
+        from .metrics import Metrics
+
+        _ = initialize_mock # For pylint.
+        metrics_uri = 'http://abc@unknown?app_key=def&debug=true'
+
+        with self.assertRaises(ValueError):
+            Metrics(metrics_uri)
+
 class TestDatadog(unittest.TestCase):
 
     def setUp(self):
