@@ -19,8 +19,7 @@ The development system is built by `Rake`.
 
 To install the dependencies, run:
 
-    $ rake install_style_config
-    $ pip install -r requirements_dev.txt
+    $ rake install
 
 To run test, run:
 

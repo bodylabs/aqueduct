@@ -31,6 +31,11 @@ task :install_dist do
     end
 end
 
+desc "Install dependencies for dev"
+task :install => :require_style_config do
+    raise unless system "pip install -r requirements_dev.txt"
+end
+
 def command_is_in_path?(command)
     system("which #{ command} > /dev/null 2>&1")
 end
