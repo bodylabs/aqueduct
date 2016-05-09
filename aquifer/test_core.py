@@ -11,9 +11,9 @@ class TestCore(unittest.TestCase):
         _ = initialize_mock # For pylint.
         metrics_uri = 'metrics://abc@datadog?app_key=def&debug=true'
 
-        Metrics(metrics_uri)
+        Metrics(metrics_uri, host='i-12345')
 
-        initialize_mock.assert_called_once_with(api_key='abc', app_key='def', debug='true')
+        initialize_mock.assert_called_once_with(api_key='abc', app_key='def', host_name='i-12345', debug='true')
 
     @mock.patch('datadog.initialize')
     def test_metrics_initialized_with_unknown_backend_raise_error(self, initialize_mock):

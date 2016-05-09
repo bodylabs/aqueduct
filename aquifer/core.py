@@ -1,7 +1,7 @@
 class Metrics(object):
     """A metrics client, which locates its backend from the URI
     """
-    def __init__(self, metrics_uri):
+    def __init__(self, metrics_uri, host=None):
         import urlparse
 
         from aquifer.backends import get_backend
@@ -28,7 +28,7 @@ class Metrics(object):
 
         backend_cls = get_backend(parsed_metrics_url.hostname)
 
-        self.backend = backend_cls(auth=auth, **options)
+        self.backend = backend_cls(auth=auth, host=host, **options)
 
     # send a metric
     def send(self, name, value, metrics_type='gauge', tags=None, timestamp=None):
